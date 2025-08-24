@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Transport Planner</title>
+    <title>CEG.rent - Transport & Logistics Solutions</title>
     <style>
         * {
             margin: 0;
@@ -13,205 +13,383 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: #333;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            min-height: 100vh;
         }
 
         .header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
             text-align: center;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            border-bottom: 3px solid #e74c3c;
         }
 
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
         }
 
-        .header p {
-            font-size: 1.2em;
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.4);
+            animation: logoFloat 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: logoShine 3s ease-in-out infinite;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-domain {
+            font-size: 14px;
+            font-weight: 600;
             opacity: 0.9;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 40px;
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
         }
 
-        .input-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        @keyframes logoShine {
+            0%, 100% { transform: translateX(-100%) translateY(-100%); }
+            50% { transform: translateX(100%) translateY(100%); }
         }
 
-        .input-section h2 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 1.8em;
+        .company-info {
+            text-align: left;
         }
 
-        .form-group {
+        .company-name {
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-tagline {
+            font-size: 1.4em;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .company-description {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
+        .location-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+            font-size: 1em;
         }
 
-        input, select, textarea {
+        .main-content {
+            padding: 60px 30px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: white;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section-subtitle {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+            transition: left 0.7s;
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #4facfe;
-            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        .tool-card:hover::before {
+            left: 100%;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        .tool-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+            border-color: #e74c3c;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tool-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            color: white;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logistics-tool .tool-icon {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .route-tool .tool-icon {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .cost-tool .tool-icon {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .schedule-tool .tool-icon {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .fleet-tool .tool-icon {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+        }
+
+        .analytics-tool .tool-icon {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        }
+
+        .tool-title {
+            font-size: 2em;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .tool-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+        }
+
+        .tool-features {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .tool-features li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+
+        .tool-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tool-features li::before {
+            content: '✓';
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.1em;
+        }
+
+        .launch-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 18px 35px;
             border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
-        }
-
-        .results-section {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .results-section h2 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 1.8em;
-        }
-
-        .transport-option {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .transport-option:hover {
+        .launch-btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.4);
         }
 
-        .transport-option h3 {
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        .option-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .detail-item {
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            margin: 60px 30px;
+            padding: 50px;
+            border-radius: 25px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .detail-value {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
             font-size: 1.2em;
-            font-weight: bold;
+            opacity: 0.9;
+            font-weight: 600;
         }
 
-        .detail-label {
-            font-size: 0.9em;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        .loading {
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
             text-align: center;
             padding: 40px;
-            color: #666;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .loading::after {
-            content: '';
+        .status-badge {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #4facfe;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .ai-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #333;
-            padding: 5px 12px;
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-left: 10px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-ready {
+            background: #27ae60;
+            color: white;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .status-coming {
+            background: #f39c12;
+            color: white;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
         }
 
         @media (max-width: 768px) {
-            .main-content {
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
             
-            .header h1 {
-                font-size: 2em;
+            .company-name {
+                font-size: 2.5em;
             }
             
-            .container {
-                margin: 10px;
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .company-info {
+                text-align: center;
             }
         }
     </style>
@@ -219,226 +397,142 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 AI Transport Planner</h1>
-            <p>Smart transportation planning powered by artificial intelligence</p>
-        </div>
-
-        <div class="main-content">
-            <div class="input-section">
-                <h2>Plan Your Journey <span class="ai-badge">AI Powered</span></h2>
-                <form id="transportForm">
-                    <div class="form-group">
-                        <label for="origin">From:</label>
-                        <input type="text" id="origin" name="origin" placeholder="Enter departure location" required>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-text">CEG</div>
+                    <div class="logo-domain">.rent</div>
+                </div>
+                <div class="company-info">
+                    <div class="company-name">CEG.rent</div>
+                    <div class="company-tagline">Transport & Logistics Hub</div>
+                    <div class="company-description">
+                        Comprehensive transport solutions for our lighting & rigging rental operations
                     </div>
-
-                    <div class="form-group">
-                        <label for="destination">To:</label>
-                        <input type="text" id="destination" name="destination" placeholder="Enter destination" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="date">Travel Date:</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="time">Preferred Time:</label>
-                        <input type="time" id="time" name="time">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passengers">Number of Passengers:</label>
-                        <select id="passengers" name="passengers">
-                            <option value="1">1 Person</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5+">5+ People</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="priorities">Priorities:</label>
-                        <select id="priorities" name="priorities">
-                            <option value="cost">Lowest Cost</option>
-                            <option value="time">Fastest Route</option>
-                            <option value="comfort">Most Comfortable</option>
-                            <option value="eco">Most Eco-Friendly</option>
-                            <option value="balanced">Balanced</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="budget">Budget Range:</label>
-                        <select id="budget" name="budget">
-                            <option value="budget">Budget (£0-50)</option>
-                            <option value="moderate">Moderate (£50-150)</option>
-                            <option value="premium">Premium (£150+)</option>
-                            <option value="no-limit">No Budget Limit</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="special">Special Requirements:</label>
-                        <textarea id="special" name="special" placeholder="e.g., wheelchair access, pet travel, large luggage..." rows="3"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-primary">🤖 Generate AI Transport Plan</button>
-                </form>
-            </div>
-
-            <div class="results-section">
-                <h2>Your AI-Generated Transport Options</h2>
-                <div id="results">
-                    <p style="text-align: center; color: #666; padding: 40px;">
-                        Enter your travel details and click "Generate AI Transport Plan" to see personalized recommendations based on your preferences.
-                    </p>
+                    <div class="location-badge">📍 Unit B4, Tower Close, Huntingdon PE29 7DH</div>
                 </div>
             </div>
         </div>
+
+        <div class="main-content">
+            <div class="section-header">
+                <div class="section-title">Logistics Management Suite</div>
+                <div class="section-subtitle">Professional transport planning tools designed for CEG.rent operations</div>
+            </div>
+
+            <div class="tools-grid">
+                <a href="logistics.html" class="tool-card logistics-tool">
+                    <div class="tool-icon">🚛</div>
+                    <div class="tool-title">Route Optimizer</div>
+                    <div class="status-badge status-ready">Ready to Use</div>
+                    <div class="tool-description">AI-powered logistics scheduling optimized for lighting & rigging equipment delivery across the UK.</div>
+                    <ul class="tool-features">
+                        <li>3 company vans (1400kg capacity each)</li>
+                        <li>Pallet delivery integration (UK & Europe)</li>
+                        <li>Cost optimization & route planning</li>
+                        <li>Excel/CSV inventory upload</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+
+                <a href="routes.html" class="tool-card route-tool">
+                    <div class="tool-icon">🗺️</div>
+                    <div class="tool-title">Route Planner</div>
+                    <div class="status-badge status-coming">Coming Soon</div>
+                    <div class="tool-description">Interactive route planning with real-time traffic data for efficient equipment delivery scheduling.</div>
+                    <ul class="tool-features">
+                        <li>Live UK traffic integration</li>
+                        <li>Multi-venue delivery optimization</li>
+                        <li>Production timeline management</li>
+                        <li>Driver break compliance (10hr max)</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+
+                <a href="costs.html" class="tool-card cost-tool">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-title">Cost Calculator</div>
+                    <div class="status-badge status-coming">Coming Soon</div>
+                    <div class="tool-description">Detailed transport cost analysis for CEG.rent fleet vs third-party logistics options.</div>
+                    <ul class="tool-features">
+                        <li>Fuel cost tracking (30mpg efficiency)</li>
+                        <li>Driver costs (£14.50/hour)</li>
+                        <li>Pallet service comparisons</li>
+                        <li>Equipment transport ROI</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+
+                <a href="schedule.html" class="tool-card schedule-tool">
+                    <div class="tool-icon">📅</div>
+                    <div class="tool-title">Schedule Manager</div>
+                    <div class="status-badge status-coming">Coming Soon</div>
+                    <div class="tool-description">Production-focused scheduling with equipment availability and delivery coordination.</div>
+                    <ul class="tool-features">
+                        <li>9am-5pm operations (flexible ±3hrs)</li>
+                        <li>Equipment availability tracking</li>
+                        <li>Production deadline priority</li>
+                        <li>Client delivery notifications</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+
+                <a href="fleet.html" class="tool-card fleet-tool">
+                    <div class="tool-icon">🚐</div>
+                    <div class="tool-title">Fleet Manager</div>
+                    <div class="status-badge status-coming">Coming Soon</div>
+                    <div class="tool-description">Comprehensive fleet management for CEG.rent's transport vehicles and equipment tracking.</div>
+                    <ul class="tool-features">
+                        <li>3 van fleet monitoring</li>
+                        <li>Equipment loading optimization</li>
+                        <li>Vehicle maintenance scheduling</li>
+                        <li>Fleet utilization reports</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+
+                <a href="analytics.html" class="tool-card analytics-tool">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-title">Analytics Dashboard</div>
+                    <div class="status-badge status-coming">Coming Soon</div>
+                    <div class="tool-description">Business intelligence dashboard with transport metrics and rental operation insights.</div>
+                    <ul class="tool-features">
+                        <li>Transport cost per rental</li>
+                        <li>Delivery efficiency scoring</li>
+                        <li>Equipment utilization trends</li>
+                        <li>Customer satisfaction tracking</li>
+                    </ul>
+                    <button class="launch-btn">Launch Tool →</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2 style="color: white; margin-bottom: 25px; font-size: 2.2em;">CEG.rent Transport Operations</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Transport Vans</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1400</div>
+                    <div class="stat-label">Max Payload (kg)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">UK</div>
+                    <div class="stat-label">Nationwide Coverage</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>&copy; 2025 CEG.rent | Unit B4, Tower Close, Huntingdon PE29 7DH</strong></p>
+            <p>Professional lighting & rigging rental with integrated transport solutions</p>
+            <p>📞 0203 603 0179 | 🌐 <a href="https://ceg.rent" style="color: #e74c3c;">ceg.rent</a></p>
+        </div>
     </div>
-
-    <script>
-        // Set today's date as default
-        document.getElementById('date').valueAsDate = new Date();
-
-        document.getElementById('transportForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Show loading
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '<div class="loading">AI is analyzing your travel options...</div>';
-            
-            // Simulate AI processing
-            setTimeout(() => {
-                generateTransportOptions(data);
-            }, 2000);
-        });
-
-        function generateTransportOptions(data) {
-            const resultsDiv = document.getElementById('results');
-            
-            // AI-generated transport options based on input
-            const options = generateAIOptions(data);
-            
-            let html = '';
-            options.forEach(option => {
-                html += `
-                    <div class="transport-option">
-                        <h3>${option.type} ${option.icon}</h3>
-                        <p>${option.description}</p>
-                        <div class="option-details">
-                            <div class="detail-item">
-                                <div class="detail-value">${option.duration}</div>
-                                <div class="detail-label">Duration</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-value">${option.cost}</div>
-                                <div class="detail-label">Est. Cost</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-value">${option.emissions}</div>
-                                <div class="detail-label">CO₂ Impact</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-value">${option.comfort}</div>
-                                <div class="detail-label">Comfort</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            resultsDiv.innerHTML = html;
-        }
-
-        function generateAIOptions(data) {
-            const { origin, destination, passengers, priorities, budget } = data;
-            
-            // AI logic to generate contextual options
-            const baseOptions = [
-                {
-                    type: "High-Speed Train",
-                    icon: "🚄",
-                    description: "Fast and comfortable rail connection with minimal environmental impact.",
-                    duration: "2h 45m",
-                    cost: "£89",
-                    emissions: "Low",
-                    comfort: "★★★★★"
-                },
-                {
-                    type: "Direct Flight",
-                    icon: "✈️",
-                    description: "Fastest option with multiple daily departures and airline choice.",
-                    duration: "1h 20m",
-                    cost: "£156",
-                    emissions: "High",
-                    comfort: "★★★★☆"
-                },
-                {
-                    type: "Express Coach",
-                    icon: "🚌",
-                    description: "Budget-friendly option with WiFi and comfortable seating.",
-                    duration: "4h 15m",
-                    cost: "£28",
-                    emissions: "Medium",
-                    comfort: "★★★☆☆"
-                },
-                {
-                    type: "Car Rental",
-                    icon: "🚗",
-                    description: "Maximum flexibility with door-to-door convenience.",
-                    duration: "3h 30m",
-                    cost: "£67",
-                    emissions: "Medium",
-                    comfort: "★★★★☆"
-                }
-            ];
-
-            // AI prioritization based on user preferences
-            let options = [...baseOptions];
-            
-            if (priorities === 'cost') {
-                options.sort((a, b) => parseInt(a.cost.slice(1)) - parseInt(b.cost.slice(1)));
-            } else if (priorities === 'time') {
-                options.sort((a, b) => parseDuration(a.duration) - parseDuration(b.duration));
-            } else if (priorities === 'eco') {
-                const ecoOrder = { 'Low': 1, 'Medium': 2, 'High': 3 };
-                options.sort((a, b) => ecoOrder[a.emissions] - ecoOrder[b.emissions]);
-            }
-
-            // Adjust recommendations based on passenger count
-            if (passengers === '5+') {
-                options[0].description += " Group booking available with discounts.";
-                options[3].description += " Large vehicle option recommended for your group.";
-            }
-
-            // Budget filtering
-            if (budget === 'budget') {
-                options = options.filter(opt => parseInt(opt.cost.slice(1)) <= 50);
-            }
-
-            return options.slice(0, 3); // Return top 3 AI recommendations
-        }
-
-        function parseDuration(duration) {
-            const parts = duration.split(' ');
-            let totalMinutes = 0;
-            
-            parts.forEach(part => {
-                if (part.includes('h')) {
-                    totalMinutes += parseInt(part) * 60;
-                } else if (part.includes('m')) {
-                    totalMinutes += parseInt(part);
-                }
-            });
-            
-            return totalMinutes;
-        }
-    </script>
 </body>
 </html>
